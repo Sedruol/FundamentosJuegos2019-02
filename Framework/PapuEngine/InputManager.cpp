@@ -21,7 +21,7 @@ void InputManager::setMouseCoords(float x, float y) {
 	_mouseCoords.y = y;
 }
 
-InputManager::InputManager()//:_mouseCoords(0.0f,0.0f)
+InputManager::InputManager():_mouseCoords(0.0f,0.0f)
 {
 }
 
