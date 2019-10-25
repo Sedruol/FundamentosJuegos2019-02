@@ -1,13 +1,16 @@
 #pragma once
-#include "Human.h"
-
-class Zombie : public Human
+#include "Agent.h"
+class Zombie :public Agent
 {
 public:
 	Zombie();
 	~Zombie();
-	void init(float _speed, glm::vec2 _position);
-	void update();
-	void draw(SpriteBacth& spritebatch);
+
+	void init(float speed, glm::vec2 position);
+
+	void update(const std::vector<std::string>& levelData,
+		std::vector<Human*>& humans,
+		std::vector<Zombie*>& zombies);
+	Human* getNearestHuman(std::vector<Human*>& humans);
 };
 

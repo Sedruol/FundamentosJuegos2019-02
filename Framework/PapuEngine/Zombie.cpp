@@ -1,30 +1,48 @@
 #include "Zombie.h"
-#include "ResourceManager.h"
+#include "Human.h"
+#include <iostream>
 
 Zombie::Zombie()
 {
 }
 
-void Zombie::init(float _speed, glm::vec2 _position)
-{
-	speed = _speed;
-	position = _position;
-	color.r = 240;
-	color.g = 255;
-	color.b = 255;
-	color.a = 255;
+void Zombie::init(float speed, glm::vec2 position) {
+	_speed = speed;
+	_position = position;
+	color.set(0, 255, 0, 255);
 }
 
-void Zombie::update()
-{
+void Zombie::update(const std::vector<std::string>& levelData,
+	std::vector<Human*>& humans,
+	std::vector<Zombie*>& zombies) {
+	collideWithLevel(levelData);
+	Human* closeHuman = getNearestHuman(humans);
+	if (closeHuman != nullptr) {
+		glm::vec2 direction = glm::normalize(closeHuman->getPosition() - _position);
+		_position += direction * _speed;
+	}
+	for (size_t i = 0; i < humans.size(); i++) {
+		bool beta = collideWithAgent(humans[i]);
+		if (beta) {
+			zombies.push_back(new Zombie());
+			zombies.back()->init(0.3f, humans[i]->getPosition());
+			humans.erase(humans.begin() + i);
+		}
+	}
 }
 
-void Zombie::draw(SpriteBacth & spritebatch)
-{
-	static int textureID = ResourceManager::getTexture("Textures/zombie.png").id;
-	const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
-	glm::vec4 destRect(position.x, position.y, AGENT_WIDTH, AGENT_WIDTH);
-	spritebatch.draw(destRect, uvRect, textureID, 0.0f, color);
+Human* Zombie::getNearestHuman(std::vector<Human*>& humans) {
+	Human* closestHuman = nullptr;
+	float smallestDistance = 888888888888.0f;
+	for (size_t i = 0; i < humans.size(); i++) {
+		glm::vec2 dist = humans[i]->getPosition() - _position;
+		float distance = glm::length(dist);
+		if (distance < smallestDistance) {
+			smallestDistance = distance;
+			closestHuman = humans[i];
+		}
+	}
+	return closestHuman;
 }
 
 

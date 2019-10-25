@@ -1,6 +1,1 @@
-﻿  MainGame.cpp
-c:\users\oscar\desktop\fundajuegos2019-02\framework\papuengine\maingame.cpp(34): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-c:\users\oscar\desktop\fundajuegos2019-02\framework\papuengine\maingame.cpp(131): warning C4244: 'argumento': conversión de 'Sint32' a 'float'; posible pérdida de datos
-c:\users\oscar\desktop\fundajuegos2019-02\framework\papuengine\maingame.cpp(130): warning C4244: 'argumento': conversión de 'Sint32' a 'float'; posible pérdida de datos
-c:\users\oscar\desktop\fundajuegos2019-02\framework\papuengine\maingame.cpp(148): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  PapuEngine.vcxproj -> C:\Users\oscar\Desktop\FundaJuegos2019-02\Framework\Debug\PapuEngine.exe
+﻿  PapuEngine.vcxproj -> C:\Users\oscar\Desktop\FundamentosJuegos2019-02\Framework\Debug\PapuEngine.exe
